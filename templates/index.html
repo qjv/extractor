@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table to NumPy Array Converter</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        textarea, input, pre { width: 100%; margin-top: 10px; }
+        button { margin-top: 10px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h2>Table to NumPy Array Converter</h2>
+    <label for="arrayName">Array name:</label>
+    <input id="arrayName" placeholder="e.g. my_array" />
+
+    <label for="rawData">Paste your table:</label>
+    <textarea id="rawData" rows="8" placeholder="Paste tabular values here..."></textarea>
+
+    <button onclick="convert()">Convert & Copy</button>
+
+    <h3>Output:</h3>
+    <pre id="output"></pre>
+
+    <script>
+        async function convert() {
+            const arrayName = document.getElementById("arrayName").value || "array_name";
+            const rawData = document.getElementById("rawData").value;
+
+            const response = await fetch("/convert", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ arrayName, rawData })
+            });
+            const result = await response.json();
+            const outputBox = document.getElementById("output");
+            outputBox.textContent = result.converted;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(result.converted).then(() => {
+                alert("Array copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
