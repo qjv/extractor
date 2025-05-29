@@ -28,10 +28,10 @@ def convert():
         output.append(numbers)
     
     # Format as NumPy-like array
-    result = f"{array_name} = [\n"
+    result = f"{array_name} = np.array([\n"
     for row in output:
         result += "    " + str(row) + ",\n"
-    result += "]"
+    result += "])"
 
     return jsonify({"converted": result})
 
