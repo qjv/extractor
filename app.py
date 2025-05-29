@@ -7,7 +7,8 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return render_template("index.html")
-
+    
+@app.route("/convert", methods=["POST"])
 def convert():
     data = request.json
     array_name = data.get("arrayName", "array_name")
