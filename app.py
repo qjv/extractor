@@ -19,6 +19,7 @@ def convert():
     for row in rows:
         # Match optional negative sign, digits, optional decimal separator with digits
         matches = re.findall(r"-?\d+(?:[.,]\d+)?", row)
+        print(matches)
         if not matches:
             continue  # Skip lines with no valid numeric values
         # Normalize decimal separator to dot for float conversion
