@@ -19,7 +19,7 @@ def convert():
     output = []
     for row in rows:
         # Match optional negative sign, digits, optional decimal separator with digits
-         matches = re.findall(r"-?\d+(?:[.,]\d+)?(?:[eE][+-]?\d+)?", row)
+        matches = re.findall(r"-?\d+(?:[.,]\d+)?(?:[eE][+-]?\d+)?", row)
         print(matches)
         if not matches:
             continue  # Skip lines with no valid numeric values
